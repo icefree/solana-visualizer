@@ -1,0 +1,17 @@
+{
+  "name": "US-DOllar",
+  "symbol": "USD",
+  "description": "A demo stablecoin minted on Solana using Token-2022 extensions for educational purposes.",
+  "image": "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v/logo.png",
+  "attributes": [
+    {
+      "trait_type": "Program Standard",
+      "value": "Token-2022"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Stablecoin Simulation"
+    }
+  ],
+  "external_url": "https://solana.com"
+}
