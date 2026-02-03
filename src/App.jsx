@@ -515,7 +515,7 @@ const SolanaSimulator = () => {
                <div className={`w-full transition-all duration-500 ${state.localATA ? 'opacity-100 scale-100' : 'opacity-0 scale-95 h-0'}`}>
                  <div className="bg-slate-800/50 border border-green-500/30 border-dashed rounded-xl p-3 w-full relative">
                     <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-slate-900 border border-gray-700 px-2 py-0.5 rounded text-[9px] text-gray-400 uppercase">
-                      My Token Account (ATA)
+                      Token Account (which is also my ATA)
                     </div>
                     
                     {/* ATA Detail Grid */}
