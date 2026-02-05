@@ -94,37 +94,51 @@ const SolanaSimulator = () => {
     },
     {
       id: 5,
-      command: `spl-token mint ${ADDRESSES.MINT_WOW} 10`,
-      desc: 'Mint 10 tokens to current account (auto-create ATA) (Line 4914)',
+      command: `spl-token create-account ${ADDRESSES.MINT_WOW}`,
+      desc: 'Create Associated Token Account (ATA) (Line 4910)',
       action: (s) => ({
         ...s,
         localWallet: { ...s.localWallet, sol: 0.996 },
-        mintAccount: { ...s.mintAccount, supply: 10 },
         localATA: {
           address: ADDRESSES.LOCAL_ATA,
           mint: ADDRESSES.MINT_WOW,
           owner: s.localWallet.address,
-          balance: 10
+          balance: 0
         }
       }),
-      output: 'Creating Associated Token Account...\nMinting 10 tokens...\nSignature: 4Xy...m2'
+      output: `Creating account ${ADDRESSES.LOCAL_ATA}\nSignature: 5jXMdw8bdgBv4vRVXi...`
     },
     {
       id: 6,
+      command: `spl-token mint ${ADDRESSES.MINT_WOW} 10`,
+      desc: 'Mint 10 tokens to current account (Line 4914)',
+      action: (s) => ({
+        ...s,
+        localWallet: { ...s.localWallet, sol: 0.994 },
+        mintAccount: { ...s.mintAccount, supply: 10 },
+        localATA: {
+          ...s.localATA,
+          balance: 10
+        }
+      }),
+      output: 'Minting 10 tokens...\nSignature: 4Xy...m2'
+    },
+    {
+      id: 7,
       command: `spl-token supply ${ADDRESSES.MINT_WOW}`,
       desc: 'Verify on-chain supply (Line 4918)',
       action: (s) => s,
       output: '10'
     },
     {
-      id: 7,
+      id: 8,
       command: `spl-token display ${ADDRESSES.MINT_WOW}`,
       desc: 'Display token details (Line 4919)',
       action: (s) => s,
       output: `SPL Token Mint\n  Address: ${ADDRESSES.MINT_WOW}\n  Program: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA\n  Supply: 10\n  Decimals: 9\n  Mint Authority: ${ADDRESSES.LOCAL_WALLET}\n  Freeze Authority: ${ADDRESSES.LOCAL_WALLET}`
     },
     {
-      id: 8,
+      id: 9,
       command: `spl-token account-info ${ADDRESSES.MINT_WOW}`,
       desc: 'View account details (Line 4922)',
       action: (s) => s,
@@ -133,7 +147,7 @@ const SolanaSimulator = () => {
 
     // --- Phase 3: Create Recipient & Transfer ---
     {
-      id: 9,
+      id: 10,
       command: 'solana-keygen new --outfile account1.json',
       desc: 'Create new wallet account1.json (Line 4952)',
       action: (s) => ({
@@ -148,12 +162,12 @@ const SolanaSimulator = () => {
     },
 
     {
-      id: 10,
+      id: 11,
       command: `spl-token transfer ${ADDRESSES.MINT_WOW} 8.8 ${ADDRESSES.FRIEND_WALLET} --fund-recipient`,
       desc: 'Transfer & pay rent. (0.002 SOL goes to ATA, not wallet)',
       action: (s) => ({
         ...s,
-        localWallet: { ...s.localWallet, sol: 0.994 }, // Pays ATA Rent (~0.002) + Gas
+        localWallet: { ...s.localWallet, sol: 0.992 }, // Pays ATA Rent (~0.002) + Gas
         localATA: { ...s.localATA, balance: 1.2 }, // 10 - 8.8 = 1.2
         friendATA: {
           address: ADDRESSES.FRIEND_ATA,
@@ -165,7 +179,7 @@ const SolanaSimulator = () => {
       output: `Transfer 8.8 tokens to ${ADDRESSES.FRIEND_WALLET}...\nSender funded recipient account.\nSignature: 3Rq...p1`
     },
     {
-      id: 11,
+      id: 12,
       command: `spl-token balance ${ADDRESSES.MINT_WOW} --owner ${ADDRESSES.FRIEND_WALLET}`,
       desc: 'Verify recipient balance (Line 4977)',
       action: (s) => s,
@@ -174,12 +188,12 @@ const SolanaSimulator = () => {
 
     // --- Phase 4: Token-2022 & Metadata ---
     {
-      id: 12,
+      id: 13,
       command: 'spl-token create-token --enable-metadata --decimals 0 --program-2022',
       desc: 'Create Token-2022 standard token (supports metadata) (Line 5007)',
       action: (s) => ({
         ...s,
-        localWallet: { ...s.localWallet, sol: 0.990 },
+        localWallet: { ...s.localWallet, sol: 0.988 },
         mintAccount2022: {
           address: ADDRESSES.MINT_2022,
           supply: 0,
@@ -193,7 +207,7 @@ const SolanaSimulator = () => {
       output: `Creating token ${ADDRESSES.MINT_2022}... under program Token2022\nDecimals: 0`
     },
     {
-      id: 13,
+      id: 14,
       command: `spl-token initialize-metadata ${ADDRESSES.MINT_2022} "US-DOllar" "USD" ...`,
       desc: 'Initialize on-chain metadata (Line 5008)',
       action: (s) => ({
@@ -203,7 +217,7 @@ const SolanaSimulator = () => {
       output: 'Metadata initialized successfully.'
     },
     {
-      id: 14,
+      id: 15,
       command: `spl-token display ${ADDRESSES.MINT_2022}`,
       desc: 'View token display info (CLI renders metadata) (Line 5023)',
       action: (s) => s,
