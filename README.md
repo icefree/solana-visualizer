@@ -98,4 +98,10 @@ Solana 命令行交互可视化工具，旨在通过动画模拟和实时状态�
 
 ---
 
+### 🛡️ Recent Updates
+
+- **UI Update**: Simplified ATA labels by changing "Owner (Authority)" to "Owner" for a cleaner interface.
+
+---
+
 _Created with ❤️ for the Solana Community._
