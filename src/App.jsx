@@ -553,7 +553,7 @@ const SolanaSimulator = () => {
                             {/* OWNER FIELD - HIGHLIGHTED */}
                             <div className="flex flex-col bg-blue-900/20 p-1.5 rounded border border-blue-500/20 gap-1">
                                 <span className="text-blue-400 font-bold flex items-center gap-1 text-[9px]">
-                                    <Lock className="w-3 h-3" /> Owner (Authority):
+                                    <Lock className="w-3 h-3" /> Owner:
                                 </span>
                                 <span className="text-blue-300 font-bold text-[10px] break-all leading-tight">{state.localATA?.owner}</span>
                             </div>
@@ -642,7 +642,7 @@ const SolanaSimulator = () => {
                                     {/* OWNER FIELD - HIGHLIGHTED */}
                                     <div className="flex flex-col bg-purple-900/20 p-1.5 rounded border border-purple-500/20 gap-1">
                                         <span className="text-purple-400 font-bold flex items-center gap-1 text-[9px]">
-                                            <Lock className="w-3 h-3" /> Owner (Authority):
+                                            <Lock className="w-3 h-3" /> Owner:
                                         </span>
                                         <span className="text-purple-300 font-bold text-[10px] break-all leading-tight">{state.friendATA?.owner}</span>
                                     </div>
